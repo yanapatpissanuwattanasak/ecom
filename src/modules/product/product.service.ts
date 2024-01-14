@@ -21,7 +21,11 @@ export class ProductService {
 
     async findById(id: number){
         let product = await this.productRepository.findById(id)
+        console.log(product);
+        
         const cate = await this.categoryRepository.findCategory(product.category)
+        console.log(cate);
+        
         return Object.assign(product,{ categoryList: cate.cateParent})
     }
 

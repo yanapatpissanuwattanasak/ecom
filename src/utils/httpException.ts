@@ -6,11 +6,13 @@ export function setType(status) {
 }
 
 export class HttpCustomException extends HttpException {
-  constructor(status, message?) {
+ 
+  constructor(status, message?, response?) {
 
-    message = message ? message : setType(status)
-    super(message, status);
+    message = message || setType(status)
+    super(message, status, response);
   }
+  
 }
 
 

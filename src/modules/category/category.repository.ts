@@ -20,10 +20,10 @@ export class CategoryRepository {
         })
     }
 
-    async findCategory(cateCode): Promise<any> {
+    async findCategory(cateCodeParent): Promise<any> {
         let category = await this.categoryRepository.findOne({
             where: {
-                cateCode: cateCode,
+                cateCodeParent: cateCodeParent,
             },
         })
         if (category.cateCodeParent) {
@@ -31,6 +31,8 @@ export class CategoryRepository {
             const allCate = cateString.split('-')
             const cate2 = await this.categoryRepository.createQueryBuilder('category')
                 .where('category.cateCode IN (:...allCate)', { allCate })
+                .orderBy('category.cateLevel', 'ASC')
+                .orderBy('category.id', 'ASC')
                 .getMany();
             const tranfromCate = { cateParent: cate2 }
             Object.assign(category, tranfromCate);

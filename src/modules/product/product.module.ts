@@ -8,10 +8,10 @@ import { CategoryService } from '../category/category.service';
 import { CategoryRepository } from '../category/category.repository';
 import { UserService } from '../user/user.service';
 import { UserRepository } from '../user/user.repository';
-
+import { UserModule } from '../user/user.module';
 @Module({
   controllers: [ProductController],
   providers: [ProductService, CategoryService, CategoryRepository, ...categoryProviders, ProductRepository, ...productProviders, UserService, UserRepository, ...userProviders],
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, UserModule],
 })
 export class ProductModule {}

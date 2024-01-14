@@ -1,7 +1,6 @@
 // auth.guard.ts
 
 import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
 import { UserService } from 'src/modules/user/user.service';
 import { decodeJwtToken } from 'src/utils/common';
 
@@ -21,6 +20,7 @@ export class RoleGurard implements CanActivate {
         throw new UnauthorizedException('Invalid credentials');
       }
       request.userId = user.getId();
+      request.username = user.getUsername()
       return true;
     } catch (error) {
       console.log(error);
