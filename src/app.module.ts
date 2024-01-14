@@ -14,6 +14,7 @@ import { CategoryController } from './modules/category/category.controller';
 import { CategoryRepository } from './modules/category/category.repository';
 import { CategoryService } from './modules/category/category.service';
 import { CategoryModule } from './modules/category/category.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 const AllService = [
   ProductService,
@@ -35,7 +36,7 @@ const AllProvider = [
 ]
 
 @Module({
-  imports: [ProductModule, UserModule, CategoryModule],
+  imports: [ProductModule, UserModule, CategoryModule, ProfileModule],
   controllers: [ProductController, UserController, CategoryController],
   providers: [...AllService, ...AllRepository, ...AllProvider],
 })

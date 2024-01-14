@@ -1,4 +1,4 @@
-import { Like, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 import { Product } from 'src/entitys/product.entity';
 import { Inject, Injectable } from '@nestjs/common';
 import { Category } from 'src/entitys/category.entity';

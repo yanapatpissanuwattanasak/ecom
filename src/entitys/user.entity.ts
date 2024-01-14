@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import * as bcrypt from 'bcrypt';
+import { Profile } from "./profile.entity";
 
 @Entity()
 export class User {
@@ -32,6 +33,13 @@ export class User {
     @Column({ type: 'timestamptz', nullable: true })
     @UpdateDateColumn()
     updatedAt: Date
+
+    @OneToOne(() => Profile, (profile) => profile.userId)
+    profile: Profile;
+
+    async getId() {
+        return this.id
+    }
 
     async getUsername() {
         return this.username

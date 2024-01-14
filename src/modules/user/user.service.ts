@@ -10,16 +10,15 @@ export class UserService {
 
 
   async findByUsername(payload) {
-    return await this.userRepository.findByUsername(payload)
+    return this.userRepository.findByUsername(payload)
   }
 
   async Login(payload) {
     const user = await this.userRepository.findByUsername(payload)
     if (!user) throw new HttpCustomException(HttpStatus.NOT_FOUND, ExceptionMessage.USER_NOT_FOUND)
-    console.log(user.checkPassword(payload.password));
     const checkPassword = await user.checkPassword(payload.password)
     if (!checkPassword) throw new HttpCustomException(HttpStatus.NOT_FOUND, ExceptionMessage.USER_OR_PASSWORD_WRONG)
-    const jwt = generateToken({ username: user.getUsername() })
+    const jwt = generateToken({ userId: await user.getId(), username: await user.getUsername() })
     return jwt
   }
 

@@ -1,6 +1,7 @@
 
 import { Category } from 'src/entitys/category.entity';
 import { Product } from 'src/entitys/product.entity';
+import { Profile } from 'src/entitys/profile.entity';
 import { User } from 'src/entitys/user.entity';
 import { DataSource } from 'typeorm';
 
@@ -25,6 +26,14 @@ export const categoryProviders = [
   {
     provide: 'CATEGORY_REPOSITORY',
     useFactory: (dataSource: DataSource) => dataSource.getRepository(Category),
+    inject: ['DATA_SOURCE'],
+  },
+];
+
+export const profileProviders = [
+  {
+    provide: 'PROFILE_REPOSITORY',
+    useFactory: (dataSource: DataSource) => dataSource.getRepository(Profile),
     inject: ['DATA_SOURCE'],
   },
 ];

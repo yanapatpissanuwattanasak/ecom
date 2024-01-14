@@ -7,8 +7,11 @@ export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Post('/login')
-  login(@Body() createUserDto: User) {
-    return this.userService.Login(createUserDto);
+  async login(@Body() createUserDto: User) {
+    const token = await this.userService.Login(createUserDto);
+    return {
+      token: token
+    }
   }
 
   @Post('/')
