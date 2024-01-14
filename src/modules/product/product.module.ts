@@ -3,11 +3,13 @@ import { ProductService } from './product.service';
 import { ProductController } from './product.controller';
 import { ProductRepository } from './product.repository';
 import { DatabaseModule } from 'src/database/database.module';
-import { productProviders } from 'src/utils/provider';
+import { categoryProviders, productProviders } from 'src/utils/provider';
+import { CategoryService } from '../category/category.service';
+import { CategoryRepository } from '../category/category.repository';
 
 @Module({
   controllers: [ProductController],
-  providers: [ProductService, ProductRepository, ...productProviders],
+  providers: [ProductService, CategoryService, CategoryRepository, ...categoryProviders, ProductRepository, ...productProviders],
   imports: [DatabaseModule],
 })
 export class ProductModule {}

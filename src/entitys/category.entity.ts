@@ -1,23 +1,21 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm'
 @Entity()
-export class Product {
+export class Category {
+
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  name: string;
-
-  @Column({ type: "text", nullable: true })
-  discription: string;
+  @Column({ nullable: true })
+  cateCodeParent: string
 
   @Column()
-  price: number
+  cateCode: string
 
   @Column()
-  quantity: number
+  name: string
 
-  @Column({ type: "text", nullable: true })
-  category: string
+  @Column()
+  cateLevel: number
 
   @Column({ type: 'timestamptz' })
   @CreateDateColumn()
@@ -26,4 +24,5 @@ export class Product {
   @Column({ type: 'timestamptz' })
   @UpdateDateColumn()
   updatedAt: Date
+
 }

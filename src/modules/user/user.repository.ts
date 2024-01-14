@@ -22,4 +22,8 @@ export class UserRepository {
         const user = new User(payload.username, payload.password, payload.email)
         return this.userRepository.save(user);
     }
+
+    async update(id, paylaod) {
+        return this.userRepository.update(id, paylaod)
+    }   
 }
