@@ -8,7 +8,9 @@ export class UserController {
   constructor(private readonly userService: UserService) { }
 
   @Post('/login')
-  async login(@Body() createUserDto: User) {
+  async login(@Body() createUserDto: any) {
+    console.log(createUserDto);
+    
     const token = await this.userService.Login(createUserDto);
     return {
       token: token
@@ -16,6 +18,7 @@ export class UserController {
   }
 
   @Post('/')
+
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.userService.createAccount(createUserDto);
   }
